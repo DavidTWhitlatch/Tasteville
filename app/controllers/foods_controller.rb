@@ -40,6 +40,15 @@ class FoodsController < ApplicationController
     @food.destroy
   end
 
+  def add_flavor
+    @food = Food.find(food_params[:food_id])
+    @flavor = Flavor.find(food_params[:flavor_id])
+
+    @food.flavors << @flavor
+
+    render json: @food.flavors
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_food
@@ -52,6 +61,6 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:name)
+    params.require(:food).permit(:name, :food_id, :flavor_id)
   end
 end
