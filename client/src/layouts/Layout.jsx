@@ -13,6 +13,12 @@ export default function Layout({ currentUser, handleLogout, children }) {
         ) : (
           <Link to='/login'>Login/Register</Link>
         )}
+        {currentUser && (
+          <nav>
+            <Link to='/foods'>Foods</Link>
+            <Link to='/flavors'>Flavors</Link>
+          </nav>
+        )}
       </header>
       {children}
     </div>

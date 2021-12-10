@@ -1,6 +1,6 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: :show
-  before_action :authorize_request, only: :create
+  before_action :authorize_request, only: [:create, :update, :destroy]
   before_action :set_user_food, only: [:update, :destroy]
 
   # GET /foods
