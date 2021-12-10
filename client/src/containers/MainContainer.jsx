@@ -8,7 +8,7 @@ import { getAllFoods, postFood, putFood, deleteFood } from '../services/food';
 import { getAllFlavors } from '../services/flavor';
 import Flavors from '../screens/Flavors';
 
-export default function MainContainer() {
+export default function MainContainer({ currentUser }) {
   const [foods, setFoods] = useState([]);
   const [flavors, setFlavors] = useState([]);
   const history = useHistory();
@@ -56,14 +56,18 @@ export default function MainContainer() {
         <Route path='/foods/:id/edit'>
           <FoodEdit foods={foods} handleFoodUpdate={handleFoodUpdate} />
         </Route>
-        <Route path='/foods/:id'>
-          <FoodDetail flavors={flavors} />
-        </Route>
         <Route path='/foods/new'>
           <FoodCreate handleFoodCreate={handleFoodCreate} />
         </Route>
+        <Route path='/foods/:id'>
+          <FoodDetail flavors={flavors} currentUser={currentUser} />
+        </Route>
         <Route path='/foods'>
-          <Foods foods={foods} handleFoodDelete={handleFoodDelete} />
+          <Foods
+            foods={foods}
+            handleFoodDelete={handleFoodDelete}
+            currentUser={currentUser}
+          />
         </Route>
         <Route path='/flavors'>
           <Flavors flavors={flavors} />
