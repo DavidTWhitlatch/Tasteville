@@ -1,8 +1,12 @@
 import api from './apiConfig';
 
 export const getAllFoods = async () => {
-  const resp = await api.get('/foods');
-  return resp.data;
+  try{
+    const resp = await api.get('/foods');
+    return resp.data;
+  } catch(e) {
+    return {error: e.message}
+  }
 };
 
 export const getOneFood = async (id) => {
